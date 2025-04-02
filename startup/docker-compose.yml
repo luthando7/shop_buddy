@@ -1,0 +1,35 @@
+services:
+  database:
+    image: postgres:latest
+    container_name: startup_db
+    environment:
+      POSTGRES_USER: tcc_user
+      POSTGRES_PASSWORD: 12345test
+      POSTGRES_DB: tcc_backend
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+#  backend:
+#    build: .
+#    container_name: spring_backend
+#    depends_on:
+#      - database
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/tcc_backend
+#      SPRING_DATASOURCE_USERNAME: tcc_user
+#      SPRING_DATASOURCE_PASSWORD: 12345test
+#    ports:
+#      - "8080:8080"
+
+  # frontend:
+  #   build: ./frontend
+  #   container_name: react_frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+
+volumes:
+  pg_data:
